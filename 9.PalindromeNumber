@@ -1,0 +1,34 @@
+Determine whether an integer is a palindrome（回文）. Do this without extra space.
+
+Some hints:
+
+Could negative integers be palindromes?(ie, -1)
+
+If you are thinking of converting the integer to string, note the restriction of using extra space.
+
+You could also try reversing an integer. However, if you have solved the problem "Reverse Integer", 
+you know that the reversed integer might overflow. How would you handle such case?
+
+There is a more generic way of solving this problem.
+
+Solution:
+解题思路：
+当x为负数或者x的个位数为0时，必定不是回文
+为防止整数溢出，考虑将x从中间分开，然后逆序后半部分，当前后两部分相等时必然为回文，例如“1221”，我们只需要将“21”变为“12”，
+然后与前半部分比较是否相等即可。
+
+class Solution(object):
+    def isPalindrome(self, x):
+        """
+        :type x: int
+        :rtype: bool
+        """
+        if x < 0 or ( x % 10 == 0 and x != 0 ):
+            return False
+            
+        revertedNumber = 0
+        while x > revertedNumber:
+            revertedNumber = revertedNumber * 10 + x % 10
+            x /= 10
+            
+        return (x == revertedNumber or x == revertedNumber / 10)
