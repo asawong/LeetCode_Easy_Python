@@ -1,3 +1,32 @@
 Given an array of integers, return indices of the two numbers such that they add up to a specific target.
 You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
 Example:
+
+Given nums = [2, 7, 11, 15], target = 9,
+Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1]
+
+Solution:
+解题思路：
+首先判断nums列表长度是否为空或仅有1个元素，如是则返回False，因为题目中要求为两数之和。
+然后构建一个空字典dic，用于储存indices与(target - nums[i])键值对
+再创建一个循环次数为len(nums)+1的循环，每次循环均会判断nums[i]是否在字典dic中，如果不在，则(target - nums[i])作为键，
+i作为值构成键值对储存在dic中。一旦循环进行到后面的某个元素，发现该值已存在于字典中，则表明该位置的数与引入该值入字典的那
+个位置的数相加等于target，最后返回两个值得位置即可。
+
+class solution(object):
+	def twoSum(self, nums, target):
+		"""
+		:type nums: List[int]
+		:type target: int
+		:rtype: List[int]
+		"""
+		if len(nums) <= 1:
+			return False
+		dic = {}
+		for i in len(nums):
+			if num[i] in dic.keys():
+				return [dic[nums[i]], i]
+			else:
+				dic[target - nums[i]] = i
