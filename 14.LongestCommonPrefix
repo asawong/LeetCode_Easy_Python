@@ -1,0 +1,35 @@
+Write a function to find the longest common prefix string amongst an array of strings.
+
+Solution:
+解题思路：
+暴力破解法，从字符串头部开始计算，初始化公共前缀子字符串是strs[0]，然后将初始化的公共前缀子字符串与strs列表中的下一个字符串进行
+比较，比较后都会得到一个最长公共前缀子字符串，再利用最新得到的公共前缀子字符串与下一个比较，直到遍历完strs列表或者公共前缀子字符串
+变为空。
+
+代码(python):
+class Solution(object):
+    def longestCommonPrefix(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        size = len(strs)
+        if size == 0:
+            return ''
+        if size == 1:
+            return strs[0]
+        ans = strs[0]
+        
+        i = 1
+        while i < size:
+            j = 0
+            minlen = min(len(ans), len(strs[i]))
+            while j < minlen:
+                if ans[j] != strs[i][j]
+                    break
+                j += 1
+            if j == 0:
+                return ''
+            ans = ans[:j]
+            i += 1
+        return ans
