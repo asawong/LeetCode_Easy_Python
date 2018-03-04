@@ -54,7 +54,7 @@ class Solution(object):
                 l1 = l1.next
             else:
                 t.next = l2
-                l2 = le.next
+                l2 = l2.next
             t = t.next
         t.next = l1 or l2
     return s.next
